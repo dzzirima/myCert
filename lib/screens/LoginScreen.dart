@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
 
               Container(
-                width: 500,
+                width: 501,
                 height: 220,
                 child: Card(
                   shape: RoundedRectangleBorder(
