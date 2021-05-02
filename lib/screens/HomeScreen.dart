@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_document_picker/flutter_document_picker.dart';
+
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
+  List<String> docPaths;
+  void _getDocuments() async {
+    final path = await FlutterDocumentPicker.openDocument();
+    print(path);
+    if (!mounted) return;
+    setState(() {});
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,17 +57,18 @@ class _HomeState extends State<Home> {
                     color: Colors.amber[100],
                     child: const Center(child: Text('Entry C')),
                   ),
+                  if (docPaths != null)
+                    Text(docPaths.join('\n'))
                 ],
               ),
             ),
           ],
         )
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {// Add your onPressed code here!
-            print("The floating action buton was pressed 22");
-          },
-        child: Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: _getDocuments,
+        icon:Icon(Icons.add),
+        label: Text("Add Docs"),
 
       ),
     );
