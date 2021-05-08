@@ -26,9 +26,6 @@ class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Share hfhd dfdfh df"),
-      ),
       body:Center(
         child: widgetOptions.elementAt(selectedIndex),
       ),

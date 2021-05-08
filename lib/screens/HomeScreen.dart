@@ -1,6 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,68 +12,142 @@ class Home extends StatefulWidget {
 }
 class _HomeState extends State<Home> {
   List<String> docPaths;
-  void _getDocuments() async {
-    final path = await FlutterDocumentPicker.openDocument();
-    print(path);
-    if (!mounted) return;
-    setState(() {});
+  List<Widget>MyDocuments = [];
+  List<String>documentNames = [];
+
+  void removeDocuments(index){
+    setState(() {
+      MyDocuments.removeAt(index);
+    });
   }
 
+  void _getDocuments() async {
+    var path = await FlutterDocumentPicker.openDocument();
+    var name;
+    var extension;
+    var fileUpLoadedDate = (DateFormat.yMMMd().format(DateTime.now()));
+    try{
+      if(path != null) {
+        name = path.split('/').last;
+        extension = name.split('.').last;
 
+        setState(() {
+          MyDocuments.add(DocumentCard(nameOfDocument:name ,icon: Icons.picture_as_pdf_sharp,uploadDate:fileUpLoadedDate));
+          documentNames.add(name.toString());
+          print(extension);
+        });
+      } else {
+        // User canceled the picker
+      }
+    }
+    catch(err){
+      print("Failed to pic the documents Sir ..................");
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child:CircleAvatar(
-                  backgroundColor: Colors.black,
-                  radius: 53.0,
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('assets/david.jpeg'),
-                    backgroundColor: Colors.blueGrey,
-                    foregroundColor: Colors.white,
-                  ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 50.0),
+            child: Icon(Icons.description,
+              color: Colors.grey,
+              size: 40.0,
+            ),
+          ),
+          centerTitle: true,
+          title: Container(
+            margin: EdgeInsets.all(20.0),
+              child: Text("Certificates & Resumes",
+                style: GoogleFonts.lato(
+                  fontWeight: FontWeight.w900,
+                  color:Color(0xff34656d),
+                  fontStyle: FontStyle.italic,
                 ),
               ),
-            ),
-              Expanded(
-                flex: 2,
-                child: ListView(
-                padding: const EdgeInsets.all(8),
-                children: <Widget>[
-                  Container(
-                    height: 50,
-                    color: Colors.amber[600],
-                    child: const Center(child: Text('Entry A')),
-                  ),
-                  Container(
-                    height: 50,
-                    color: Colors.amber[500],
-                    child: const Center(child: Text('Entry B')),
-                  ),
-                  Container(
-                    height: 50,
-                    color: Colors.amber[100],
-                    child: const Center(child: Text('Entry C')),
-                  ),
-                  if (docPaths != null)
-                    Text(docPaths.join('\n'))
-                ],
+          ),
+        ),
+        body: Center(
+          child: Column(
+            children: [
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Container(
+              //     child:CircleAvatar(
+              //       backgroundColor: Colors.black,
+              //       radius: 53.0,
+              //       child: CircleAvatar(
+              //         radius: 50,
+              //         backgroundImage: AssetImage('assets/david.jpeg'),
+              //         backgroundColor: Colors.blueGrey,
+              //         foregroundColor: Colors.white,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+                Expanded(
+                  flex: 2,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(8),
+                    itemCount: MyDocuments.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: (){
+                            print(documentNames[index]);
+                            },
+                          child: FocusedMenuHolder(
+                              menuItems: [
+                                FocusedMenuItem(title: Text("Share"),trailingIcon: Icon(Icons.share) ,onPressed: () =>{
+                                  print(documentNames[index]),
+                                }),
+                                FocusedMenuItem(title: Text("Share"),trailingIcon: Icon(Icons.delete) ,onPressed: () =>{
+                                  removeDocuments(index)
+                                }),
+                              ],
+                              menuBoxDecoration:BoxDecoration(
+                                // color: Colors.green
+                              ),
+                              blurSize: 8,
+                              blurBackgroundColor: Colors.white,
+                              menuWidth: MediaQuery.of(context).size.width * 0.5,
+                              menuItemExtent: 50,
+                              duration: Duration(seconds: 0),
+                              animateMenuItems: false,
+                              menuOffset: 10,
+                              openWithTap: true,
+                              onPressed: () {},
+                              child: MyDocuments[index]),
+                      );
+                    }),
               ),
-            ),
-          ],
-        )
-      ),
-      floatingActionButton: FloatingActionButton.extended(
+            ],
+          )
+        ),
+        floatingActionButton: FloatingActionButton.extended(
           onPressed: _getDocuments,
-        icon:Icon(Icons.add),
-        label: Text("Add Docs"),
-
+          icon:Icon(Icons.add),
+          label: Text("Add Docs"),
+        ),
+      ),
+    );
+  }
+}
+class DocumentCard extends StatelessWidget {
+  DocumentCard({@required  this.nameOfDocument,this.icon,this.uploadDate});
+  final String nameOfDocument;
+  final IconData icon;
+  final uploadDate;
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0,
+      child: ListTile(
+        leading:Icon(icon),
+        title: Text(nameOfDocument.toString().toUpperCase()),
+        subtitle: Text("Uploaded : ${uploadDate.toString()}"),
+        trailing: Icon(Icons.more_vert),
       ),
     );
   }
