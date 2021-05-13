@@ -19,7 +19,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SafeArea(
+        child:
+      Center(
         child: Column(
           children: [
             Padding(
@@ -65,6 +67,7 @@ class _HomeState extends State<Home> {
           ],
         )
       ),
+      ),  
       floatingActionButton: FloatingActionButton.extended(
           onPressed: _getDocuments,
         icon:Icon(Icons.add),
