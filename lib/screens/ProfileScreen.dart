@@ -57,9 +57,38 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 color: Colors.blue
                             ),
-                            child: Icon(
-                              Icons.edit,
-                              color: Colors.white,
+                            child: PopupMenuButton(
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                  value: 0,
+                                  child: Column(
+                                    children: [
+                                      Text("Share With"),
+                                    ],
+                                  )
+                                ),
+                                PopupMenuItem(
+                                    value: 0,
+                                    child: Column(
+                                      children: [
+                                        Text("Private"),
+
+                                      ],
+                                    )
+                                ),
+                                PopupMenuItem(
+                                    value: 0,
+                                    child: Column(
+                                      children: [
+                                        Text("Public")
+                                      ],
+                                    )
+                                ),
+                              ],
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                              ),
                             ),
                           )
                       )
