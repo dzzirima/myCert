@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:my_cert/screens/GettingStartedScreen.dart';
 import 'package:my_cert/screens/LoginScreen.dart';
@@ -10,12 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
-      initialRoute: GettingStarted.id,
+      home: SplashScreen(),
       routes: {
         LoginScreen.id :(context) =>LoginScreen(),
         Nav.id :(context) =>Nav(),
@@ -23,5 +24,38 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key key}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  void startTimer(){
+    Timer(Duration(seconds: 7), (){
+      Navigator.pushReplacementNamed(context, LoginScreen.id);
+
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTimer();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: Image.asset('assets/splashMain.png', width: MediaQuery.of(context).size.width*.5,),
+        )
+    );
+  }
+
 }
 
