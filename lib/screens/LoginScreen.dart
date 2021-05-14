@@ -44,153 +44,152 @@ class _LoginScreenState extends State<LoginScreen> {
       onWillPop: _onWillPop,
       child: new Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            '@my_cert',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.deepOrange,
-            ),
+            title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+               Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Welcome to @my_cert'),
+              ),
+          ],
           ),
-        ),
+    centerTitle: true,
+    ),
+
         body: Center(
+          child: ListView(
+            children: <Widget>[
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text("",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'lobster',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                child:  CircleAvatar(
+                  radius: 150,
+                  backgroundImage: AssetImage('assets/david.jpeg'),
+                  backgroundColor: Colors.blueGrey,
+                  foregroundColor: Colors.white,
+                ),
+              ),
 
-          child: Center(
-            child: ListView(
-              children: <Widget>[
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Text("Welcome to @my_cert",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'lobster',
-                        fontWeight: FontWeight.bold,
+              Container(
+                width: 501,
+                height: 250,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  color: Colors.white,
+                  elevation: 0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/atsign.png',
+                            height: 50.0,
+                            width: 50.0,
+                          ),
+                        ),
+                        title: Text(
+                          '',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0),
+                        ),
+                        subtitle: DropdownButton<String>(
+                          hint: Text('\tPick an @sign'),
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          style:
+                          TextStyle(fontSize: 20.0, color: Colors.black87),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.deepOrange,
+                          ),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              atSign = newValue;
+                            });
+                          },
+                          value: atSign != null ? atSign : null,
+                          items: at_demo_data.allAtsigns
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
                       ),
-                    ),
+                      Container(
+                        margin: EdgeInsets.all(12),
+                        child: TextButton(
+                            child: Text(
+                                "Submit".toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                )
+                            ),
+                            style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(12)),
+                                foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        side: BorderSide(color: Colors.red)
+                                    )
+                                )
+                            ),
+                            onPressed: _login
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(12),
+                        child: TextButton(
+                            child: Text(
+                                "Get an @sign",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                )
+                            ),
+                            style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(12)),
+                                foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        side: BorderSide(color: Colors.red)
+                                    )
+                                )
+                            ),
+                            onPressed:_launchURL
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Container(
-                  child:  CircleAvatar(
-                    radius: 150,
-                    backgroundImage: AssetImage('assets/david.jpeg'),
-                    backgroundColor: Colors.blueGrey,
-                    foregroundColor: Colors.white,
-                  ),
-                ),
-
-                Container(
-                  width: 501,
-                  height: 250,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    color: Colors.white,
-                    elevation: 0,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ListTile(
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(
-                              'assets/atsign.png',
-                              height: 50.0,
-                              width: 50.0,
-                            ),
-                          ),
-                          title: Text(
-                            '',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.0),
-                          ),
-                          subtitle: DropdownButton<String>(
-                            hint: Text('\tPick an @sign'),
-                            icon: Icon(
-                              Icons.keyboard_arrow_down,
-                            ),
-                            iconSize: 24,
-                            elevation: 16,
-                            style:
-                            TextStyle(fontSize: 20.0, color: Colors.black87),
-                            underline: Container(
-                              height: 2,
-                              color: Colors.deepOrange,
-                            ),
-                            onChanged: (String newValue) {
-                              setState(() {
-                                atSign = newValue;
-                              });
-                            },
-                            value: atSign != null ? atSign : null,
-                            items: at_demo_data.allAtsigns
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(12),
-                          child: TextButton(
-                              child: Text(
-                                  "Submit".toUpperCase(),
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  )
-                              ),
-                              style: ButtonStyle(
-                                  padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(12)),
-                                  foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                          side: BorderSide(color: Colors.red)
-                                      )
-                                  )
-                              ),
-                              onPressed: _login
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(12),
-                          child: TextButton(
-                              child: Text(
-                                  "Get an @sign",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  )
-                              ),
-                              style: ButtonStyle(
-                                  padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(12)),
-                                  foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(12.0),
-                                          side: BorderSide(color: Colors.red)
-                                      )
-                                  )
-                              ),
-                              onPressed:_launchURL
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

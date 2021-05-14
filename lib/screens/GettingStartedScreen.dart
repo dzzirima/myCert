@@ -59,7 +59,7 @@ class _GettingStartedState extends State<GettingStarted> {
                 ),
               ),
               Text(
-                '\t \t Own \n \n    Build \n \n \t & Share your certifications',
+                '\t \t Own \n \n   Share \n \n \t & Share your certifications',
                 style: TextStyle(
 
                   fontSize: 20,
