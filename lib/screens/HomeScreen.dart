@@ -48,6 +48,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xfff0ece3),
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +97,12 @@ class _HomeState extends State<Home> {
                                 FocusedMenuItem(title: Text("Share"),trailingIcon: Icon(Icons.share) ,onPressed: () =>{
                                   print(documentNames[index]),
                                 }),
-                                FocusedMenuItem(title: Text("Delete"),trailingIcon: Icon(Icons.delete) ,onPressed: () =>{
+                                FocusedMenuItem(title: Text("Delete"),
+                                    trailingIcon: Icon(
+                                        Icons.delete,
+                                      color: Colors.red,
+
+                                    ) ,onPressed: () =>{
                                   removeDocuments(index)
                                 }),
                               ],
@@ -104,7 +110,7 @@ class _HomeState extends State<Home> {
                                 // color: Colors.green
                               ),
                               blurSize: 8,
-                              blurBackgroundColor: Colors.white,
+                              blurBackgroundColor: Colors.indigoAccent,
                               menuWidth: MediaQuery.of(context).size.width * 0.5,
                               menuItemExtent: 50,
                               duration: Duration(seconds: 0),
