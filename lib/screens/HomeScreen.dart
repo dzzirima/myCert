@@ -49,25 +49,19 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 50.0),
-            child: Icon(Icons.description,
-              color: Colors.grey,
-              size: 40.0,
-            ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.description_outlined
+                //color: Colors.green[500],
+              ),
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Certificates & Resumes'),
+              ),
+            ],
           ),
           centerTitle: true,
-          title: Container(
-            margin: EdgeInsets.all(20.0),
-              child: Text("Certificates & Resumes",
-                style: GoogleFonts.lato(
-                  fontWeight: FontWeight.w900,
-                  color:Color(0xff34656d),
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-          ),
         ),
         body: Center(
           child: Column(
