@@ -96,7 +96,7 @@ class _HomeState extends State<Home> {
                                 FocusedMenuItem(title: Text("Share"),trailingIcon: Icon(Icons.share) ,onPressed: () =>{
                                   print(documentNames[index]),
                                 }),
-                                FocusedMenuItem(title: Text("Share"),trailingIcon: Icon(Icons.delete) ,onPressed: () =>{
+                                FocusedMenuItem(title: Text("Delete"),trailingIcon: Icon(Icons.delete) ,onPressed: () =>{
                                   removeDocuments(index)
                                 }),
                               ],
