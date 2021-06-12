@@ -1,7 +1,10 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
@@ -22,27 +25,34 @@ class _HomeState extends State<Home> {
   }
 
   void _getDocuments() async {
-    var path = await FlutterDocumentPicker.openDocument();
-    var name;
-    var extension;
-    var fileUpLoadedDate = (DateFormat.yMMMd().format(DateTime.now()));
-    try{
-      if(path != null) {
-        name = path.split('/').last;
-        extension = name.split('.').last;
+    FilePickerResult result = await FilePicker.platform.pickFiles();
 
-        setState(() {
-          MyDocuments.add(DocumentCard(nameOfDocument:name ,icon: Icons.picture_as_pdf_sharp,uploadDate:fileUpLoadedDate));
-          documentNames.add(name.toString());
-          print(extension);
-        });
-      } else {
-        // User canceled the picker
-      }
+    if(result != null) {
+      print(result.names[0]);
+    } else {
+      // User canceled the picker
     }
-    catch(err){
-      print("Failed to pic the documents Sir ..................");
-    }
+    // var path = await FlutterDocumentPicker.openDocument();
+    // var name;
+    // var extension;
+    // var fileUpLoadedDate = (DateFormat.yMMMd().format(DateTime.now()));
+    // try{
+    //   if(path != null) {
+    //     name = path.split('/').last;
+    //     extension = name.split('.').last;
+    //
+    //     setState(() {
+    //       MyDocuments.add(DocumentCard(nameOfDocument:name ,icon: Icons.picture_as_pdf_sharp,uploadDate:fileUpLoadedDate));
+    //       documentNames.add(name.toString());
+    //       print(extension);
+    //     });
+    //   } else {
+    //     // User canceled the picker
+    //   }
+    // }
+    // catch(err){
+    //   print("Failed to pic the documents Sir ..................");
+    // }
   }
   @override
   Widget build(BuildContext context) {
