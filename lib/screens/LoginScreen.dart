@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,22 +19,23 @@ class _LoginScreenState extends State<LoginScreen> {
   // ServerDemoService _serverDemoService = ServerDemoService.getInstance();
   Future<bool> _onWillPop() async {
     return (await showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Are you sure?'),
-        content: new Text('Do you want to exit @my_cert'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('No'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Are you sure?'),
+            content: new Text('Do you want to exit @my_cert'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('No'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: new Text('Yes'),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: new Text('Yes'),
-          ),
-        ],
-      ),
-    )) ?? false;
+        )) ??
+        false;
   }
 
   @override
@@ -44,25 +44,25 @@ class _LoginScreenState extends State<LoginScreen> {
       onWillPop: _onWillPop,
       child: new Scaffold(
         appBar: AppBar(
-            title: Row(
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Container(
+              Container(
                 padding: const EdgeInsets.all(8.0),
                 child: Text('Welcome to @my_cert'),
               ),
-          ],
+            ],
           ),
-    centerTitle: true,
-    ),
-
+          centerTitle: true,
+        ),
         body: Center(
           child: ListView(
             children: <Widget>[
               Container(
                 child: Padding(
                   padding: const EdgeInsets.all(20),
-                  child: Text("",
+                  child: Text(
+                    "",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,
@@ -73,14 +73,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Container(
-                child:  CircleAvatar(
+                child: CircleAvatar(
                   radius: 150,
                   backgroundImage: AssetImage('assets/david.jpeg'),
                   backgroundColor: Colors.blueGrey,
                   foregroundColor: Colors.white,
                 ),
               ),
-
               Container(
                 width: 501,
                 height: 250,
@@ -117,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           iconSize: 24,
                           elevation: 16,
                           style:
-                          TextStyle(fontSize: 20.0, color: Colors.black87),
+                              TextStyle(fontSize: 20.0, color: Colors.black87),
                           underline: Container(
                             height: 2,
                             color: Colors.deepOrange,
@@ -140,50 +139,52 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                         margin: EdgeInsets.all(12),
                         child: TextButton(
-                            child: Text(
-                                "Submit".toUpperCase(),
+                            child: Text("Submit".toUpperCase(),
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
-                                )
-                            ),
+                                )),
                             style: ButtonStyle(
-                                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(12)),
-                                foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                    EdgeInsets.all(12)),
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.red),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.red),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                        side: BorderSide(color: Colors.red)
-                                    )
-                                )
-                            ),
-                            onPressed: _login
-                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        side: BorderSide(color: Colors.red)))),
+                            onPressed: _login),
                       ),
                       Container(
                         margin: EdgeInsets.all(12),
                         child: TextButton(
-                            child: Text(
-                                "Get an @sign",
+                            child: Text("Get an @sign",
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
-                                )
-                            ),
+                                )),
                             style: ButtonStyle(
-                                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(12)),
-                                foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                    EdgeInsets.all(12)),
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.red),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.red),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12.0),
-                                        side: BorderSide(color: Colors.red)
-                                    )
-                                )
-                            ),
-                            onPressed:_launchURL
-                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                        side: BorderSide(color: Colors.red)))),
+                            onPressed: _launchURL),
                       ),
                     ],
                   ),
@@ -207,8 +208,8 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushReplacementNamed(context, Nav.id);
       });
     }
-
   }
+
   _launchURL() async {
     const url = 'https://atsign.com/get-an-sign/';
     if (await canLaunch(url)) {
@@ -217,7 +218,6 @@ class _LoginScreenState extends State<LoginScreen> {
       throw 'Could not launch $url';
     }
   }
-
 
 //   FocusScope.of(context).unfocus();
 //   setState(() {
