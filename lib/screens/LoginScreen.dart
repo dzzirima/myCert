@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:my_cert/screens/GettingStartedScreen.dart';
 import 'package:at_demo_data/at_demo_data.dart' as at_demo_data;
 import 'package:my_cert/nav/Nav.dart';
+import 'package:my_cert/utils/service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 String atSign;
@@ -16,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool showSpinner = false;
-  // ServerDemoService _serverDemoService = ServerDemoService.getInstance();
+  ServerDemoService _serverDemoService = ServerDemoService.getInstance();
   Future<bool> _onWillPop() async {
     return (await showDialog(
           context: context,
@@ -200,15 +201,45 @@ class _LoginScreenState extends State<LoginScreen> {
   // TODO: Write _login method
   /// Use onboard() to authenticate via PKAM public/private keys.
   _login() async {
-    print("welcome to my_cert");
+    // If an atsign has been chosen to authenticate
+    print(atSign);
     if (atSign != null) {
+      // Re-running the build method
       FocusScope.of(context).unfocus();
       setState(() {
+        // Shows the spinning icon until the atsign is successfully authenticated
         showSpinner = true;
+      });
+
+      // a json string necessary to authenticate for the first time
+      // and key pairs are stored within this string
+      String jsonData = _serverDemoService.encryptKeyPairs(atSign);
+
+      // Utilizing the onboard method, passing in the atsign that has been
+      // selected to authenticate
+      _serverDemoService.onboard(atsign: atSign).then((value) async {
+        // Push navigator to home screen and also preventing authenticated atsign
+        // from returning to login screen
+        Navigator.pushReplacementNamed(context, Nav.id);
+      }).catchError((error) async {
+        // First time authenticating with atsign will throw
+        // 'atsign not found' error
+        // onboard method looks for cached keys within device.
+        // Authenticate will embed the necessary keys within the key chain
+        await _serverDemoService.authenticate(atSign,
+            // Passing the key pairs retrieved earlier in addition to the decrypt
+            // key which is retireved from the at_demo_data file's list of
+            // keys
+            jsonData: jsonData,
+            decryptKey: at_demo_data.aesKeyMap[atSign]);
+
+        // Push navigator to home screen and also preventing authenticated atsign
+        // from returning to login screen
         Navigator.pushReplacementNamed(context, Nav.id);
       });
     }
   }
+}
 
   _launchURL() async {
     const url = 'https://atsign.com/get-an-sign/';
@@ -229,12 +260,12 @@ class _LoginScreenState extends State<LoginScreen> {
 //     _serverDemoService.onboard(atsign: atSign).then((value) async {
 //       Navigator.pushReplacementNamed(context, DashBoard.id);
 //     }).catchError((error) async {
-//       await _serverDemoService.authenticate(atSign,
+//      await _serverDemoService.authenticate(atSign,
 //           jsonData: jsonData, decryptKey: at_demo_data.aesKeyMap[atSign]);
 //       Navigator.pushReplacementNamed(context, DashBoard.id);
 //     });
-//   }else{
+//    }else{
 //     Navigator.pushReplacementNamed(context, DashBoard.id);
 //   }
 // }
-}
+
