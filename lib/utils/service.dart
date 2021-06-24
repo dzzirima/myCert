@@ -44,7 +44,7 @@ class ServerDemoService {
     return service;
   }
 
-  Future<AtClientPreference> _getAtClientPreference({String cramSecret}) async {
+  Future<AtClientPreference> getAtClientPreference({String cramSecret}) async {
     final appDocumentDirectory =
         await path_provider.getApplicationSupportDirectory();
     String path = appDocumentDirectory.path;
@@ -67,9 +67,11 @@ class ServerDemoService {
 
   Future<bool> onboard({String atsign}) async {
     atClientServiceInstance = _getClientServiceForAtSign(atsign);
-    var atClientPreference = await _getAtClientPreference();
+
+    var atClientPreference = await getAtClientPreference();
     var result = await atClientServiceInstance.onboard(
         atClientPreference: atClientPreference, atsign: atsign);
+    atClientInstance = atClientServiceInstance.atClient;
     _atsign = atsign == null ? await this.getAtSign() : atsign;
     atClientServiceMap.putIfAbsent(_atsign, () => atClientServiceInstance);
     sync();
@@ -88,7 +90,7 @@ class ServerDemoService {
         atsignStatus != ServerStatus.activated) {
       throw atsignStatus;
     }
-    var atClientPreference = await _getAtClientPreference();
+    var atClientPreference = await getAtClientPreference();
     var result = await atClientServiceInstance.authenticate(
         atsign, atClientPreference,
         jsonData: jsonData, decryptKey: decryptKey);
@@ -150,6 +152,20 @@ class ServerDemoService {
     return await _getAtClientForAtsign().notify(atKey, value, operation);
   }
 
+
+  Future<bool> sendFile(String atSign, String filePath) async {
+    if (!atSign.contains('@')) {
+      atSign = '@' + atSign;
+    }
+    print("Sending file => $atSign $filePath");
+    var result = await atClientInstance.stream(atSign, filePath);
+    print("sendfile result => $result");
+    if (result.status.toString() == 'AtStreamStatus.COMPLETE') {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ///Fetches atsign from device keychain.
   Future<String> getAtSign() async {
     return await atClientServiceInstance.getAtSign();
@@ -162,3 +178,4 @@ class BackupKeyConstants {
   static const String AES_ENCRYPTION_PUBLIC_KEY = 'aesEncryptPublicKey';
   static const String AES_ENCRYPTION_PRIVATE_KEY = 'aesEncryptPrivateKey';
 }
+
