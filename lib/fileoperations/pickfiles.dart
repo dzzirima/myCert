@@ -1,5 +1,6 @@
 // this file contains method of picking up files and manipulatig  them
 
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:at_client_mobile/at_client_mobile.dart';
@@ -38,11 +39,11 @@ class MyFileManager {
 
       AtKey document = AtKey();
       //await _serverDemoService.get(document);
-      String description = "Graduated from the @sign Universty with the distinction";
+      String description = "Build the next generation of privacy-first apps with the @platform";
       document.key = "document";
       document.sharedWith = atSign;
       // store the files in the key value chain
-      await _serverDemoService.put(document,description);
+      await _serverDemoService.put(document,);
 
       AtKey lookup = AtKey();
       lookup.key = "document";
@@ -50,14 +51,16 @@ class MyFileManager {
 
       String response = await  _serverDemoService.get(lookup);
       // getting the at sign and print to the screen
-      print(response);
+      print("************************************************************************");
+      print("File Name >>>"+ this.fileName);
+      print("FileDescription >>>"+response);
+      print("************************************************************************");
 
 
 
 
       //await _serverDemoService.put(document, fileBytes.toString());
       // var atClientPreference = await _serverDemoService.getAtClientPreference();
-
       // await AtClientImpl.createClient(
       //     atSign, "my_cert", atClientPreference);
       // var atClient = await AtClientImpl.getClient(atSign);
