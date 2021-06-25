@@ -33,25 +33,39 @@ class MyFileManager {
       // store the values inthe keychain
 
       ServerDemoService _serverDemoService = ServerDemoService.getInstance();
+      String atSign = await _serverDemoService.getAtSign();
+
+
       AtKey document = AtKey();
       //await _serverDemoService.get(document);
-      document.key = this.fileName;
-      document.sharedWith = "david";
+      String description = "Graduated from the @sign Universty with the distinction";
+      document.key = "document";
+      document.sharedWith = atSign;
       // store the files in the key value chain
+      await _serverDemoService.put(document,description);
+
+      AtKey lookup = AtKey();
+      lookup.key = "document";
+      lookup.sharedWith = atSign;
+
+      String response = await  _serverDemoService.get(lookup);
+      // getting the at sign and print to the screen
+      print(response);
+
+
 
 
       //await _serverDemoService.put(document, fileBytes.toString());
       // var atClientPreference = await _serverDemoService.getAtClientPreference();
-      String atSign = await _serverDemoService.getAtSign();
+
       // await AtClientImpl.createClient(
       //     atSign, "my_cert", atClientPreference);
       // var atClient = await AtClientImpl.getClient(atSign);
-      var streamResult =
-      await _serverDemoService.sendFile(atSign, result.files.single.path);
+      var streamResult = await _serverDemoService.sendFile(atSign, result.files.single.path);
 
 
       String value = await _serverDemoService.get(document);
-      print(value);
+      //print(value);
 
 
 
