@@ -43,11 +43,12 @@ class MyFileManager {
       document.key = "document";
       document.sharedWith = atSign;
       // store the files in the key value chain
-      await _serverDemoService.put(document,);
+      await _serverDemoService.put(document,jsonEncode(this.fileBytes));
 
       AtKey lookup = AtKey();
       lookup.key = "document";
       lookup.sharedWith = atSign;
+
 
       String response = await  _serverDemoService.get(lookup);
       // getting the at sign and print to the screen
