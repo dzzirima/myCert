@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                         side: BorderSide(color: Colors.red)))),
-                            onPressed: _login),
+                            onPressed: login),
                       ),
                       Container(
                         margin: EdgeInsets.all(12),
@@ -238,6 +238,10 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushReplacementNamed(context, Nav.id);
       });
     }
+  }
+  login() async {
+    print("log in success fully");
+    Navigator.pushReplacementNamed(context, Nav.id);
   }
 }
 

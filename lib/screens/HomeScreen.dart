@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 import'package:my_cert/fileoperations/pickfiles.dart';
+import 'package:my_cert/screens/DocumentDetailScreen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -107,9 +108,18 @@ class _HomeState extends State<Home> {
           )
         ),
         floatingActionButton: FloatingActionButton.extended(
-          onPressed:_fileManager.getFile,
+          //_fileManager.getFile,
           icon:Icon(Icons.add),
           label: Text("Add Docs"),
+          onPressed:() async {
+            var doc = await _fileManager.getFile();
+            print(doc);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>DocumentDetailScreen(document: doc,),
+                ));
+          }
         ),
       ),
     );
