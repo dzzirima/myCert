@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_cert/models/Document.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class DocumentDetailScreen extends StatelessWidget {
   // Declare a field that holds the Todo.
@@ -20,8 +21,8 @@ class DocumentDetailScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Text("hello"),
-      ),
+          child: SfPdfViewer.memory(document.fileBytes)
+      )
     );
   }
 }
