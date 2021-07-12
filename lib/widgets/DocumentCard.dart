@@ -13,10 +13,16 @@ class DocumentCard extends StatelessWidget {
     return Card(
       elevation: 0,
       child: ListTile(
-        leading:Icon(icon),
+        isThreeLine: true,
+        //leading:Image.asset('assets/doc.png'),
+        leading: Image.asset(
+          'assets/pdf.png',
+          height: 50.0,
+          width: 50.0,
+        ),
         title: Text(nameOfDocument.toString().toUpperCase()),
-        subtitle: Text("Uploaded : ${uploadDate.toString()}"),
-        trailing: Icon(Icons.more_vert),
+        subtitle: Text("12/12/2021 -12MB\nSharedby :@David,@Tafadzwa,@hello and 20 others"),
+        trailing: Icon(Icons.star_border),
       ),
     );
   }
