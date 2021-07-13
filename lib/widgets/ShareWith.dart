@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class SharedWith extends StatefulWidget {
   const SharedWith({Key key}) : super(key: key);
@@ -10,19 +11,20 @@ class SharedWith extends StatefulWidget {
 
 class _SharedWithState extends State<SharedWith> {
   //  this is where you add all the state variable
-  final fields = [];
+  final List<Map<String ,String>>fields = [];
   void _addField(){
-    fields.add('');
+    fields.add({Uuid().v1():""});
     setState(() {
+
     });
   }
 
   void _removeField(index){
     fields.removeAt(index);
+    print(index);
     setState(() {
     });
 
-    
   }
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class _SharedWithState extends State<SharedWith> {
         SizedBox(height: 15.0),
         for(var i = 0; i < fields.length ; i++)
         Row(
+          key: ValueKey(fields[i].keys.first),
           children: [
             Expanded(child: CupertinoTextField(
               //padding: const EdgeInsets.all(18.0),

@@ -386,7 +386,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   pointycastle:
     dependency: transitive
     description:
@@ -440,7 +440,7 @@ packages:
       name: syncfusion_flutter_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.2.44+1"
+    version: "19.2.47"
   syncfusion_flutter_pdf:
     dependency: transitive
     description:
@@ -461,14 +461,14 @@ packages:
       name: syncfusion_flutter_pdfviewer_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.2.44-beta"
+    version: "19.2.47-beta"
   syncfusion_flutter_pdfviewer_web:
     dependency: transitive
     description:
       name: syncfusion_flutter_pdfviewer_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.2.44-beta"
+    version: "19.2.47-beta"
   term_glyph:
     dependency: transitive
     description:
@@ -496,7 +496,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.7"
+    version: "6.0.9"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -517,7 +517,7 @@ packages:
       name: url_launcher_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   url_launcher_web:
     dependency: transitive
     description:
@@ -540,7 +540,7 @@ packages:
     source: hosted
     version: "0.2.1"
   uuid:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: uuid
       url: "https://pub.dartlang.org"
