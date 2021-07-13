@@ -32,7 +32,8 @@ class MyFileManager {
       // print(this.title);
 
       // return file name and filebytes which will get from the keychain
-      var doc = new Document(this.title, this.fileBytes);
+      // var doc = new Document(this.title, this.fileBytes);
+      var doc = new Document();
       return doc;
 
       // // Upload file

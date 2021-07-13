@@ -1,9 +1,11 @@
 import 'dart:typed_data';
 
 class Document {
-  final String title;
-  final Uint8List fileBytes;
+  String title;
+  Uint8List fileBytes;
   String description;
 
-  Document(this.title,this.fileBytes);
+
+  @override
+  String toString() => '${title},${description}';
 }
