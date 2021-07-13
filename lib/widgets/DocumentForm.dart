@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,11 @@ class _DocumentFormState extends State<DocumentForm> {
           ),
         ),
         SizedBox(height: 25.0),
-        SharedWith(),
+        SharedWith(
+          onUpdate: (value){
+            values.sharedWith = value;
+          },
+        ),
         SizedBox(height: 40.0),
         CupertinoButton(
           color:Colors.blue,

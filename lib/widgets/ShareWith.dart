@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class SharedWith extends StatefulWidget {
-  SharedWith({Key key}) : super(key: key);
-  var uuid = Uuid();
+  SharedWith({Key key, @required this.onUpdate}) : super(key: key);
+
+  final ValueChanged <List<Map<String,String>>> onUpdate;
+
+  final uuid = Uuid();
 
   @override
   _SharedWithState createState() => _SharedWithState();
@@ -22,6 +25,7 @@ class _SharedWithState extends State<SharedWith> {
 
   void _removeField(index){
     fields.removeAt(index);
+    widget.onUpdate(fields);
     setState(() {
     });
   }
@@ -29,7 +33,7 @@ class _SharedWithState extends State<SharedWith> {
     // get the item which need to be updated
     final key = fields[index].keys.first;
     fields[index][key] = value;
-    print(fields);
+    widget.onUpdate(fields);
   }
   @override
   Widget build(BuildContext context) {
