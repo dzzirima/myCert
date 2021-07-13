@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:my_cert/widgets/DocumentForm.dart';
 
 class AddDocument extends StatelessWidget {
   static final String id = 'addDocument';
@@ -16,10 +17,7 @@ class AddDocument extends StatelessWidget {
             minimum: const EdgeInsets.all(15.0),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
-                  CupertinoTextField(
-                    placeholder: "Custome Doc Name",
-                    padding: const EdgeInsets.all(15),
-                  )
+                  DocumentForm()
                 ]),
               ))
         ],
