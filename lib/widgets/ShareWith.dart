@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class SharedWith extends StatefulWidget {
-  const SharedWith({Key key}) : super(key: key);
+  SharedWith({Key key}) : super(key: key);
+  var uuid = Uuid();
 
   @override
   _SharedWithState createState() => _SharedWithState();
@@ -13,7 +14,7 @@ class _SharedWithState extends State<SharedWith> {
   //  this is where you add all the state variable
   final List<Map<String ,String>>fields = [];
   void _addField(){
-    fields.add({Uuid().v1():""});
+    fields.add({widget.uuid.v1():""});
     setState(() {
 
     });
@@ -21,10 +22,14 @@ class _SharedWithState extends State<SharedWith> {
 
   void _removeField(index){
     fields.removeAt(index);
-    print(index);
     setState(() {
     });
-
+  }
+  void _updateField(String value ,int index){
+    // get the item which need to be updated
+    final key = fields[index].keys.first;
+    fields[index][key] = value;
+    print(fields);
   }
   @override
   Widget build(BuildContext context) {
@@ -39,6 +44,9 @@ class _SharedWithState extends State<SharedWith> {
           children: [
             Expanded(child: CupertinoTextField(
               //padding: const EdgeInsets.all(18.0),
+              onChanged: (value){
+                _updateField(value,i);
+              },
             ),
             ),
             CupertinoButton(child:
