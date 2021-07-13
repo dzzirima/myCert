@@ -6,7 +6,10 @@ import 'package:my_cert/models/Document.dart';
 import 'package:my_cert/widgets/ShareWith.dart';
 
 class DocumentForm extends StatefulWidget {
-  const DocumentForm({Key key}) : super(key: key);
+  const DocumentForm({Key key,@required this.onSubmit}) : super(key: key);
+
+  // submission of the frm data will be doen in the parent widget
+  final ValueChanged<Document> onSubmit;
 
 
   @override
@@ -55,9 +58,7 @@ class _DocumentFormState extends State<DocumentForm> {
               setState(() {
                 //values.fileBytes = "file name" as Uint8List;
                 fileName = "newDocumentName ...ttttttttttytyytytyttyyyyyyytyyty";
-
               });
-
             },
             child: Icon(
               Icons.add,
@@ -73,6 +74,8 @@ class _DocumentFormState extends State<DocumentForm> {
           color:Colors.blue,
             child: Text("Save Document"), onPressed: (){
           //TODO Save the document
+          widget.onSubmit(values);
+
           print(values);
         })
       ],
