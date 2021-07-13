@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 import'package:my_cert/fileoperations/pickfiles.dart';
+import 'package:my_cert/screens/AddDocument.dart';
 import 'package:my_cert/screens/DocumentDetailScreen.dart';
 import 'package:my_cert/widgets/DocumentCard.dart';
 
@@ -91,7 +92,8 @@ class _HomeState extends State<Home> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) =>DocumentDetailScreen(document: doc,),
+                  // builder: (BuildContext context) =>DocumentDetailScreen(document: doc),
+                  builder: (BuildContext context) =>AddDocument(),
                 ));
           }
         ),

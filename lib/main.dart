@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:my_cert/screens/AddDocument.dart';
 import 'package:my_cert/screens/GettingStartedScreen.dart';
 import 'package:my_cert/screens/LoginScreen.dart';
 import 'nav/Nav.dart';void main() {
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.id :(context) =>LoginScreen(),
         Nav.id :(context) =>Nav(),
-        GettingStarted.id :(context) =>GettingStarted()
+        GettingStarted.id :(context) =>GettingStarted(),
+        AddDocument.id :(context) =>AddDocument()
       },
     );
   }
