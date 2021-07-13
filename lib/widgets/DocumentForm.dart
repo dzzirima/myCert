@@ -11,7 +11,6 @@ class DocumentForm extends StatefulWidget {
   // submission of the frm data will be doen in the parent widget
   final ValueChanged<Document> onSubmit;
 
-
   @override
   _DocumentFormState createState() => _DocumentFormState();
 }
@@ -40,12 +39,12 @@ class _DocumentFormState extends State<DocumentForm> {
           onChanged: (value){
             // persist the changes
             values.description = value;
-
           },
 
         ),
         SizedBox(height: 10),
         CupertinoTextField(
+          readOnly: true,
           placeholder:  '$fileName',
           padding: const EdgeInsets.all(15),
           onChanged: (value){
@@ -57,7 +56,7 @@ class _DocumentFormState extends State<DocumentForm> {
             onPressed: (){
               setState(() {
                 //values.fileBytes = "file name" as Uint8List;
-                fileName = "newDocumentName ...ttttttttttytyytytyttyyyyyyytyyty";
+                fileName = "Masters in Programming";
               });
             },
             child: Icon(
@@ -75,8 +74,6 @@ class _DocumentFormState extends State<DocumentForm> {
             child: Text("Save Document"), onPressed: (){
           //TODO Save the document
           widget.onSubmit(values);
-
-          print(values);
         })
       ],
 
