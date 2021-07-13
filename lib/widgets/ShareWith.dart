@@ -48,6 +48,8 @@ class _SharedWithState extends State<SharedWith> {
           children: [
             Expanded(child: CupertinoTextField(
               //padding: const EdgeInsets.all(18.0),
+              placeholder:'Share with @David',
+
               onChanged: (value){
                 _updateField(value,i);
               },
