@@ -1,5 +1,7 @@
 
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_cert/models/Document.dart';
@@ -21,7 +23,7 @@ class DocumentDetailScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-          child: SfPdfViewer.memory(document.fileBytes)
+          child: SfPdfViewer.memory(jsonDecode(document.fileBytesString))
       )
     );
   }

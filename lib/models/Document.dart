@@ -3,10 +3,11 @@ import 'dart:typed_data';
 
 class Document {
   String title;
-  Uint8List fileBytes;
+  String fileBytesString;
   String description;
+  int fileSize;
   List<Map<String,String>> sharedWith;
 
   @override
-  String toString() => '${title},${description},${sharedWith}';
+  String toString() => '${title},${description},${sharedWith},size :::${fileSize}';
 }

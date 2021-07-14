@@ -5,8 +5,6 @@ import 'dart:io';
 
 import 'dart:typed_data';
 import 'package:at_client_mobile/at_client_mobile.dart';
-
-
 import 'package:file_picker/file_picker.dart';
 import 'package:my_cert/models/Document.dart';
 import 'package:my_cert/utils/service.dart';
@@ -15,25 +13,28 @@ import 'package:at_commons/at_commons.dart';
 
 class MyFileManager {
 
-  Uint8List fileBytes;
+  // Uint8List fileBytes;
+  String fileBytesString;
   String title;
+  int fileSize;
+
 
   getFile() async {
     FilePickerResult result = await FilePicker.platform.pickFiles();
     //get the files from the picker
     if (result != null) {
-      //fileBytes = result.files.first.bytes;
+
       File file = File(result.files.single.path);
-
-      fileBytes = await file.readAsBytes();
-
+      Uint8List temp  = await file.readAsBytes();
+      fileBytesString = jsonEncode(temp);
       title = result.files.first.name;
-      // print(this.fileBytes);
-      // print(this.title);
 
-      // return file name and filebytes which will get from the keychain
-      // var doc = new Document(this.title, this.fileBytes);
       var doc = new Document();
+      doc.title = this.title;
+      doc.fileSize = result.files.first.size;
+      doc.fileBytesString =fileBytesString;
+
+      print(doc);
       return doc;
 
       // // Upload file
