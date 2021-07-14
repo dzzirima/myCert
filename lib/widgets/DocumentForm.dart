@@ -58,8 +58,10 @@ class _DocumentFormState extends State<DocumentForm> {
             //color:Colors.blue,
             onPressed: () async {
               var doc = await _fileManager.getFile();
+              //print(doc);
+              values.fileSize = doc.fileSize;
+              values.fileBytesString = doc.fileBytesString;
               setState(() {
-                //values.fileBytes = "file name" as Uint8List;
                 fileName = doc.title;
               });
             },

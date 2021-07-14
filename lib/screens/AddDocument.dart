@@ -8,7 +8,7 @@ class AddDocument extends StatelessWidget {
 
   // submission of data will done in this parent form
   void _addDocument(BuildContext context , Document values){
-    print('submiting thes values $values');
+    print('submiting these values>>> $values');
   }
 
   @override

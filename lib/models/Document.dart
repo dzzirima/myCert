@@ -9,5 +9,5 @@ class Document {
   List<Map<String,String>> sharedWith;
 
   @override
-  String toString() => '${title},${description},${sharedWith},size :::${fileSize}';
+  String toString() => 'Title:${title},SharedWith:${sharedWith},size :${fileSize},${description}';
 }

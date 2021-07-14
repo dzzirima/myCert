@@ -34,7 +34,6 @@ class MyFileManager {
       doc.fileSize = result.files.first.size;
       doc.fileBytesString =fileBytesString;
 
-      print(doc);
       return doc;
 
       // // Upload file
