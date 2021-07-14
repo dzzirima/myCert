@@ -53,7 +53,8 @@ class MyFileManager {
     AtKey document = AtKey();
     //await _serverDemoService.get(document);
     String description = "Build the next generation of privacy-first apps with the @platform";
-    document.key = uuid.v1();
+    //document.key = uuid.v1();
+    document.key = "document";
     document.sharedWith = atSign;
 
     // store the files in the key value chain
@@ -74,12 +75,12 @@ class MyFileManager {
 
   }
 
-  setFileFromKeyChain() async {
+  getFileFromKeyChain() async {
 
     String atSign = await _serverDemoService.getAtSign();
     AtKey lookup = AtKey();
-    lookup.key = "document";
     lookup.sharedWith = atSign;
+    lookup.key = "document";
 
 
     String response = await  _serverDemoService.get(lookup);

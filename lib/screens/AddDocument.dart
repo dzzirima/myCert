@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_cert/fileoperations/pickfiles.dart';
+import 'package:my_cert/fileoperations/MyFileManager.dart';
 import 'package:my_cert/models/Document.dart';
 import 'package:my_cert/widgets/DocumentForm.dart';
 
@@ -16,6 +16,9 @@ class AddDocument extends StatelessWidget {
 
     // save the file in the keyChain
     _fileManager.saveFileToKeyChain("hell", "gegege");
+
+    // get the file from key chain
+    _fileManager.getFileFromKeyChain();
 
   }
 
