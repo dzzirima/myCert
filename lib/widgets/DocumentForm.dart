@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_cert/fileoperations/pickfiles.dart';
 import 'package:my_cert/models/Document.dart';
 import 'package:my_cert/widgets/ShareWith.dart';
 
@@ -11,6 +12,7 @@ class DocumentForm extends StatefulWidget {
   // submission of the frm data will be doen in the parent widget
   final ValueChanged<Document> onSubmit;
 
+
   @override
   _DocumentFormState createState() => _DocumentFormState();
 }
@@ -18,6 +20,7 @@ class DocumentForm extends StatefulWidget {
 class _DocumentFormState extends State<DocumentForm> {
   final values = Document();
   String fileName = "Pic  A file";
+  MyFileManager _fileManager = MyFileManager();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,10 +56,11 @@ class _DocumentFormState extends State<DocumentForm> {
           },
           suffix: MaterialButton(
             //color:Colors.blue,
-            onPressed: (){
+            onPressed: () async {
+              var doc = await _fileManager.getFile();
               setState(() {
                 //values.fileBytes = "file name" as Uint8List;
-                fileName = "Masters in Programming";
+                fileName = doc.title;
               });
             },
             child: Icon(
@@ -76,7 +80,7 @@ class _DocumentFormState extends State<DocumentForm> {
         CupertinoButton(
           color:Colors.blue,
             child: Text("Save Document"), onPressed: (){
-          //TODO Save the document
+          //TODO pass it to the parent widget
           widget.onSubmit(values);
         })
       ],

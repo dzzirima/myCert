@@ -24,7 +24,6 @@ class _HomeState extends State<Home> {
   DocumentCard doc1 = DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today",);
 
   List<String>documentNames = [];
-  MyFileManager _fileManager = MyFileManager();
 
   void removeDocuments(index){
     setState(() {
@@ -87,8 +86,6 @@ class _HomeState extends State<Home> {
           icon:Icon(Icons.add),
           label: Text("Add Docs"),
           onPressed:() async {
-            var doc = await _fileManager.getFile();
-            print(doc);
             Navigator.push(
                 context,
                 MaterialPageRoute(
