@@ -1,14 +1,22 @@
 import 'package:flutter/cupertino.dart';
+import 'package:my_cert/fileoperations/pickfiles.dart';
 import 'package:my_cert/models/Document.dart';
 import 'package:my_cert/widgets/DocumentForm.dart';
 
 class AddDocument extends StatelessWidget {
   static final String id = 'addDocument';
-  const AddDocument({Key key}) : super(key: key);
+  AddDocument({Key key}) : super(key: key);
+  final MyFileManager _fileManager = MyFileManager();
+
+
 
   // submission of data will done in this parent form
   void _addDocument(BuildContext context , Document values){
     print('submiting these values>>> $values');
+
+    // save the file in the keyChain
+    _fileManager.saveFileToKeyChain("hell", "gegege");
+
   }
 
   @override

@@ -57,7 +57,7 @@ class _DocumentFormState extends State<DocumentForm> {
           suffix: MaterialButton(
             //color:Colors.blue,
             onPressed: () async {
-              var doc = await _fileManager.getFile();
+              var doc = await _fileManager.getFileFromDevice();
               //print(doc);
               values.fileSize = doc.fileSize;
               values.fileBytesString = doc.fileBytesString;
