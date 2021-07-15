@@ -45,21 +45,22 @@ class MyFileManager {
   // preview the files
 
 
-  saveFileToKeyChain(String atKey,data) async {
+  saveFileToKeyChain(Document _document) async {
+    print('document sent over : $_document');
 
     String atSign = await _serverDemoService.getAtSign(); // get the user who is currently logged in
-    // genarate the id which is diff for  each documennt
 
     AtKey document = AtKey();
     //await _serverDemoService.get(document);
-    String description = "Build the next generation of privacy-first apps with the @platform";
-    //document.key = uuid.v1();
-    document.key = "document";
+    String description = "Build the next generatio";
+    document.key = uuid.v1();
+    // document.key = "document";
 
     document.sharedWith = atSign;
+
     // store the files in the key value chain
-    await _serverDemoService.put(document,description);
-    //await _serverDemoService.put(document2,description);
+    await _serverDemoService.put(document,_document.toString());
+
 
     // //await _serverDemoService.put(document, fileBytes.toString());
     // // var atClientPreference = await _serverDemoService.getAtClientPreference();
@@ -76,19 +77,19 @@ class MyFileManager {
 
   }
 
-  getFileFromKeyChain() async {
+  getFileFromKeyChain(String key) async {
 
     String atSign = await _serverDemoService.getAtSign();
     AtKey lookup = AtKey();
     lookup.sharedWith = atSign;
-    lookup.key = "document";
+    lookup.key = key;
 
 
     String response = await  _serverDemoService.get(lookup);
     // getting the at sign and print to the screen
-    print("************************************************************************");
+    print("************************The actual documents************************************************");
     print(response);
-    print("************************************************************************");
+    print("*************************End of Actual Document***********************************************");
 
 
   }
@@ -102,8 +103,6 @@ class MyFileManager {
       print(key.key.toString());
     });
     print("************************************************************************");
-
-
   }
 
 }
