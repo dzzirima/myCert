@@ -15,13 +15,11 @@ class AddDocument extends StatelessWidget {
     print('submiting these values>>> $values');
 
     // save the file in the keyChain
+
     _fileManager.saveFileToKeyChain("hell", "gegege");
 
-    // get the file from key chain
-    _fileManager.getFileFromKeyChain();
-
-    // get all the keys from the keychain
     _fileManager.getKeysFromServer();
+    // get the file from key chain
 
   }
 

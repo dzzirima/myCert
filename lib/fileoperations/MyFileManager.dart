@@ -51,16 +51,12 @@ class MyFileManager {
     // genarate the id which is diff for  each documennt
 
     AtKey document = AtKey();
-    AtKey document2 = AtKey();
     //await _serverDemoService.get(document);
     String description = "Build the next generation of privacy-first apps with the @platform";
     //document.key = uuid.v1();
     document.key = "document";
-    document2.key = "Document1";
-    document2.sharedWith = atSign;
 
     document.sharedWith = atSign;
-
     // store the files in the key value chain
     await _serverDemoService.put(document,description);
     //await _serverDemoService.put(document2,description);
@@ -98,10 +94,16 @@ class MyFileManager {
   }
   getKeysFromServer() async {
     var result = await _serverDemoService.getAtKeys();
-    // result.forEach((key) {
-    //   print(key.toString());
-    // });
-  //print(result);
+    print(result.length.toString());
+
+
+    print("************************************************************************");
+    result.forEach((key) {
+      print(key.key.toString());
+    });
+    print("************************************************************************");
+
+
   }
 
 }
