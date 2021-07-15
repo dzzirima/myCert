@@ -20,6 +20,9 @@ class AddDocument extends StatelessWidget {
     // get the file from key chain
     _fileManager.getFileFromKeyChain();
 
+    // get all the keys from the keychain
+    _fileManager.getKeysFromServer();
+
   }
 
   @override
