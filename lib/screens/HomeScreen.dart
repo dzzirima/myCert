@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
                   );}
                   return ListView(
                     children:[
-                      for(var index = 0 ;index < 2; index ++)
+                      for(var index = 0 ;index < 10; index +1)
                         Text("Hello mandisa")
                     ],
                   );

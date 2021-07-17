@@ -3,6 +3,7 @@ import 'package:my_cert/screens/HomeScreen.dart';
 import 'package:my_cert/screens/AlertsScreen.dart';
 import 'package:my_cert/screens/ProfileScreen.dart';
 import 'package:my_cert/screens/revokepaged.dart';
+import 'package:my_cert/widgets/ALLDocuments.dart';
 
 class Nav extends StatefulWidget {
   static final String id = 'nav';
@@ -12,7 +13,8 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   int selectedIndex = 0;
   List<Widget> widgetOptions = <Widget>[
-    Home(),
+    //Home(), // un comment here to get the old home screen
+    AllDocuments(),
     Alerts(),
     Profile(),
     RevokedPage(),
