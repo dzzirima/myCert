@@ -10,26 +10,27 @@ import 'package:intl/intl.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 import'package:my_cert/fileoperations/MyFileManager.dart';
+import 'package:my_cert/models/Document.dart';
 import 'package:my_cert/screens/AddDocument.dart';
 import 'package:my_cert/screens/DocumentDetailScreen.dart';
 import 'package:my_cert/widgets/DocumentCard.dart';
+import 'package:my_cert/utils/GetDocument.dart';
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
-  List<String> docPaths;
-  List <DocumentCard> MyDocuments = [];
-  DocumentCard doc1 = DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today",);
+  Future<String>futureListOfDocuments;
+  GetDocuments _getDocuments = GetDocuments();
 
-  List<String>documentNames = [];
-
-  void removeDocuments(index){
-    setState(() {
-      MyDocuments.removeAt(index);
-    });
+  @override
+  void initState() {
+    super.initState();
+    futureListOfDocuments = _getDocuments.getDocs();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,31 +55,22 @@ class _HomeState extends State<Home> {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ListView(
-              children: [
-               DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-                DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-              ],
-            ),
+            child:FutureBuilder(
+              future:futureListOfDocuments,
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                print(snapshot);
+                if(!snapshot.hasData){
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );}
+                  return ListView(
+                    children:[
+                      CircularProgressIndicator(),
+                      CircularProgressIndicator()
+                    ]
+                  );
+                }
+              ),
           )
         ),
         floatingActionButton: FloatingActionButton.extended(
