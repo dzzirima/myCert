@@ -63,7 +63,7 @@ class _AllDocumentsState extends State<AllDocuments> {
                       return Column(
                         children:[
                           for(var index = 0 ;index < 10; index ++)
-                            DocumentCard(nameOfDocument: "heh"),
+                            DocumentCard(id:index,nameOfDocument: "heh"),
                         ],
                       );
                     }

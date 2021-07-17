@@ -37,7 +37,6 @@ class MyFileManager {
       doc.title = this.title;
       doc.fileSize = result.files.first.size;
       doc.fileBytesString =fileBytesString;
-
       return doc;
     }
   }

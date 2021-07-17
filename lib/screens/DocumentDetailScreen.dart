@@ -19,12 +19,12 @@ class DocumentDetailScreen extends StatelessWidget {
     // Use the Todo to create the UI.
     return Scaffold(
       appBar: AppBar(
-        title: Text(document.title),
+        title: Text("Hello Document Name"),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-          child: SfPdfViewer.memory(jsonDecode(document.fileBytesString))
-      )
-    );
+        body: Padding(
+          padding: EdgeInsets.all(16.0),
+            child: SfPdfViewer.memory(jsonDecode(document.fileBytesString))
+         )
+      );
   }
 }

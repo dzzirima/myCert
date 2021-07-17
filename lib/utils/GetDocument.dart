@@ -7,44 +7,36 @@ class GetDocuments{
     var order = await fetchUserOrder();
     return 'Your order is: $order';
   }
-
-  Future<String> fetchUserOrder() =>
+  Future<String> fetchUserOrder(){
       // Imagine that this function is
   // more complex and slow.
   Future.delayed(
     const Duration(seconds: 2),
         () => 'Large Latte',
-  );
+  );}
 
-  // Future<String> getDocs() async{
-  //   Future<String> David = "David" as Future<String>;
-    //
-    // List<DocumentCard>documentNames = [
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    //   DocumentCard(nameOfDocument: "david",icon: Icons.dangerous,uploadDate: "today"),
-    // ];
-    //
-    // return Future.delayed(const Duration(seconds: 2));
-
+  // this function function resambles the file that  will be store in the key chain
 
 }
+
+class GetDocumentKeys{
+
+  // ignore: non_constant_identifier_names
+  String David = "sdsjdsjdjs";
+
+  Future<String> getDocs() async {
+    var order = await fetchUserOrder();
+    return David;
+  }
+  Future<String> fetchUserOrder(){
+    // Imagine that this function is
+    // more complex and slow.
+    Future.delayed(
+      const Duration(seconds: 2),
+          () => David,
+    );}
+
+}
+
+
 

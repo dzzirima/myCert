@@ -2,17 +2,29 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_cert/screens/DocumentDetailScreen.dart';
 
 class DocumentCard extends StatelessWidget {
-  DocumentCard({@required  this.nameOfDocument,this.icon,this.uploadDate});
+  DocumentCard({Key key ,@required  this.nameOfDocument,this.icon,this.uploadDate , @required this.id});
   final String nameOfDocument;
   final IconData icon;
   final uploadDate;
+  final id;
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
       onPressed: (){
-        print("hello summer");
+        // get the file bytes of the file
+        //TODO get the get the file from keychain and view it on the other side
+        showCupertinoModalPopup(
+            context: context,
+            builder: (context) =>DocumentDetailScreen()
+        );
+
+
+
+
+        print('hello summer$id');
       },
       child: Card(
         elevation: 0,
