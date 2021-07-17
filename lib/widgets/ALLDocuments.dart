@@ -1,12 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_cert/screens/AddDocument.dart';
+import 'package:my_cert/widgets/DocumentCard.dart';
 import 'package:my_cert/widgets/NoDocument.dart';
+import 'package:my_cert/utils/GetDocument.dart';
 
 
-class AllDocuments extends StatelessWidget {
-  const AllDocuments({Key key}) : super(key: key);
+class AllDocuments extends StatefulWidget {
+  AllDocuments({Key key}) : super(key: key);
 
+  @override
+  _AllDocumentsState createState() => _AllDocumentsState();
+}
+
+class _AllDocumentsState extends State<AllDocuments> {
+  Future<String>futureListOfDocuments;
+  GetDocuments _getDocuments = GetDocuments();
+
+  @override
+  void initState() {
+    super.initState();
+    futureListOfDocuments = _getDocuments.getDocs();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -33,7 +49,27 @@ class AllDocuments extends StatelessWidget {
           ),
           SliverList(
               delegate: SliverChildListDelegate([
-                NoDocument()
+                FutureBuilder(
+                    future:futureListOfDocuments,
+                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if(!snapshot.hasData){
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if(snapshot == null){
+                        return  NoDocument();
+                      }
+                      return Column(
+                        children:[
+                          for(var index = 0 ;index < 10; index ++)
+                            DocumentCard(nameOfDocument: "heh"),
+                        ],
+                      );
+                    }
+                ),
+
+                //FutureBuilder(builder: builder)
                 // for(var i = 0 ; i < 100 ; i++)
                 //   Text("Hello summer")
 
