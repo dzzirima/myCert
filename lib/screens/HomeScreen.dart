@@ -65,9 +65,9 @@ class _HomeState extends State<Home> {
                   );}
                   return ListView(
                     children:[
-                      CircularProgressIndicator(),
-                      CircularProgressIndicator()
-                    ]
+                      for(var index = 0 ;index < 2; index ++)
+                        Text("Hello mandisa")
+                    ],
                   );
                 }
               ),
