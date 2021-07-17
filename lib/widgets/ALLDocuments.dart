@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_cert/screens/AddDocument.dart';
+import 'package:my_cert/widgets/NoDocument.dart';
 
 
 class AllDocuments extends StatelessWidget {
@@ -32,8 +33,9 @@ class AllDocuments extends StatelessWidget {
           ),
           SliverList(
               delegate: SliverChildListDelegate([
-                for(var i = 0 ; i < 100 ; i++)
-                  Text("Hello summer")
+                NoDocument()
+                // for(var i = 0 ; i < 100 ; i++)
+                //   Text("Hello summer")
 
               ]))
         ],
