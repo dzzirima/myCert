@@ -66,17 +66,14 @@ class _AllDocumentsState extends State<AllDocuments> {
                     future:futureListOfDocuments1,
                     builder: (BuildContext context, AsyncSnapshot<List<AtKey>> snapshot) {
 
-                      // String david = snapshot.toString();
-                      // //print(david);
-                      // var david2 = david.split("AsyncSnapshot<String>(ConnectionState.done, [");
-                      // var david3 = json.encode(david2).split("AtKey");
-                      // print(david3[1]);
-                      // var david4 = json.decode(david3[1]);
-                      // print(david4);
-                      //
-                      // print((david3[1]).runtimeType);
-                      // print((david3[1]));
-                      print(snapshot.data);
+                      var keys = snapshot.data;
+
+                      keys.forEach((element) {
+                        print("....................");
+                        print(element.key);
+                        print(".......................");
+                      });
+                      //print(snapshot.data);
                       if(!snapshot.hasData){
                         return Center(
                           child: CircularProgressIndicator(),
@@ -87,8 +84,9 @@ class _AllDocumentsState extends State<AllDocuments> {
                       }
                       return Column(
                         children:[
-                          for(var index = 0 ;index < 10; index ++)
-                            DocumentCard(id:index,nameOfDocument: "heh"),
+
+                          for(var index = 0 ;index < keys.length; index ++)
+                            DocumentCard(id:index,nameOfDocument: keys.elementAt(index).key.toString()),
                         ],
                       );
                     }
