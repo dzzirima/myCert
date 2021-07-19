@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                         side: BorderSide(color: Colors.red)))),
-                            onPressed: login),
+                            onPressed: _login),
                       ),
                       Container(
                         margin: EdgeInsets.all(12),

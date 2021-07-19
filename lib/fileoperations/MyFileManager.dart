@@ -92,16 +92,20 @@ class MyFileManager {
 
 
   }
-  getKeysFromServer() async {
-    var result = await _serverDemoService.getAtKeys();
-    print(result.length.toString());
+  Future <String> getKeysFromServer() async {
+   String  result = (await _serverDemoService.getAtKeys()).toString();
+   //print(result);
 
 
-    print("************************************************************************");
-    result.forEach((key) {
-      print(key.key.toString());
-    });
-    print("************************************************************************");
+   // print("************************************************************************");
+   // result.forEach((key) {
+   //   print(key.key.toString());
+   // });
+   // print("************************************************************************");
+   // return  result; print(result.length.toString());
+    return  result;
+
   }
+
 
 }

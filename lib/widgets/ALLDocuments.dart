@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_cert/fileoperations/MyFileManager.dart';
 import 'package:my_cert/screens/AddDocument.dart';
 import 'package:my_cert/widgets/DocumentCard.dart';
 import 'package:my_cert/widgets/NoDocument.dart';
@@ -9,18 +12,27 @@ import 'package:my_cert/utils/GetDocument.dart';
 class AllDocuments extends StatefulWidget {
   AllDocuments({Key key}) : super(key: key);
 
+
   @override
   _AllDocumentsState createState() => _AllDocumentsState();
 }
 
 class _AllDocumentsState extends State<AllDocuments> {
   Future<String>futureListOfDocuments;
+  Future<String> futureListOfDocuments1;
+
   GetDocuments _getDocuments = GetDocuments();
+  MyFileManager _fileManager = MyFileManager();
 
   @override
   void initState() {
     super.initState();
-    futureListOfDocuments = _getDocuments.getDocs();
+
+    // print(futureListOfDocuments1);
+    // futureListOfDocuments = _getDocuments.getDocs();
+
+    futureListOfDocuments1 =  _fileManager.getKeysFromServer();
+
   }
   
   @override
@@ -50,8 +62,17 @@ class _AllDocumentsState extends State<AllDocuments> {
           SliverList(
               delegate: SliverChildListDelegate([
                 FutureBuilder(
-                    future:futureListOfDocuments,
+                    future:futureListOfDocuments1,
                     builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+
+                      String david = snapshot.toString();
+                      print(david);
+                      var david2 = david.split("AsyncSnapshot<String>(ConnectionState.done, [");
+                      var david3 = json.encode(david2).split("AtKey");
+
+
+
+                      print(david3[1]);
                       if(!snapshot.hasData){
                         return Center(
                           child: CircularProgressIndicator(),
