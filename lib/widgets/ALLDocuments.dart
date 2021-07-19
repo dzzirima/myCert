@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:at_commons/at_commons.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class AllDocuments extends StatefulWidget {
 
 class _AllDocumentsState extends State<AllDocuments> {
   Future<String>futureListOfDocuments;
-  Future<String> futureListOfDocuments1;
+  Future<List<AtKey>> futureListOfDocuments1;
 
   GetDocuments _getDocuments = GetDocuments();
   MyFileManager _fileManager = MyFileManager();
@@ -63,16 +64,19 @@ class _AllDocumentsState extends State<AllDocuments> {
               delegate: SliverChildListDelegate([
                 FutureBuilder(
                     future:futureListOfDocuments1,
-                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    builder: (BuildContext context, AsyncSnapshot<List<AtKey>> snapshot) {
 
-                      String david = snapshot.toString();
-                      print(david);
-                      var david2 = david.split("AsyncSnapshot<String>(ConnectionState.done, [");
-                      var david3 = json.encode(david2).split("AtKey");
-
-
-
-                      print(david3[1]);
+                      // String david = snapshot.toString();
+                      // //print(david);
+                      // var david2 = david.split("AsyncSnapshot<String>(ConnectionState.done, [");
+                      // var david3 = json.encode(david2).split("AtKey");
+                      // print(david3[1]);
+                      // var david4 = json.decode(david3[1]);
+                      // print(david4);
+                      //
+                      // print((david3[1]).runtimeType);
+                      // print((david3[1]));
+                      print(snapshot.data);
                       if(!snapshot.hasData){
                         return Center(
                           child: CircularProgressIndicator(),

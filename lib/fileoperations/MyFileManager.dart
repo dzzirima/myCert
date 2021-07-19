@@ -92,8 +92,8 @@ class MyFileManager {
 
 
   }
-  Future <String> getKeysFromServer() async {
-   String  result = (await _serverDemoService.getAtKeys()).toString();
+  Future <List<AtKey>> getKeysFromServer() async {
+   List<AtKey>  result = (await _serverDemoService.getAtKeys());
    //print(result);
 
 
@@ -103,7 +103,7 @@ class MyFileManager {
    // });
    // print("************************************************************************");
    // return  result; print(result.length.toString());
-    return  result;
+    return result;
 
   }
 
