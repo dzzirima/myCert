@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class SharedWith extends StatefulWidget {
-  SharedWith({Key key, @required this.onUpdate}) : super(key: key);
+  SharedWith({Key ?key, required this.onUpdate}) : super(key: key);
 
   final ValueChanged <List<Map<String,String>>> onUpdate;
 

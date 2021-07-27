@@ -100,8 +100,8 @@ class _ProfileState extends State<Profile> {
                 buildTextField("Email address", "email@gmail.com"),
                 buildTextField("Phone number", "123456789"),
                 buildTextField("Bio", "small infor about yourself"),
-                buildTextField("Work Experience", null),
-                buildTextField("  Education", null),
+                buildTextField("Work Experience","Hello summer"),
+                buildTextField("  Education", "Hello summer"),
                 SizedBox(height: 30,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

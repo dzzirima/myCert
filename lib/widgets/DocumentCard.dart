@@ -2,12 +2,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_cert/models/Document.dart';
 import 'package:my_cert/screens/DocumentDetailScreen.dart';
 
 class DocumentCard extends StatelessWidget {
-  DocumentCard({Key key ,@required  this.nameOfDocument,this.icon,this.uploadDate , @required this.id});
+  DocumentCard({Key ?key ,required this.nameOfDocument,this.uploadDate , @required this.id});
   final String nameOfDocument;
-  final IconData icon;
+  //final IconData icon;
   final uploadDate;
   final id;
   @override
@@ -18,7 +19,7 @@ class DocumentCard extends StatelessWidget {
         //TODO get the get the file from keychain and view it on the other side
         showCupertinoModalPopup(
             context: context,
-            builder: (context) =>DocumentDetailScreen()
+            builder: (context) =>DocumentDetailScreen(document: "null" as Document,)
         );
 
 

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-String root = 'root.atsign.org';
-int rootPort = 64;
-String namespace = 'atsign';
-bool debug = true;
-bool verbose = true;
-String splitter = '@_@';
+
+class AtConstants {
+  static const String NAMESPACE = 'dinosaurmarxist';
+  static const String NAMESPACE_REGEX = '.$NAMESPACE@';
+  static const String ROOT_DOMAIN = 'root.atsign.org';
+  static const int ROOT_PORT = 64;
+}
+
+
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',

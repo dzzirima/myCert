@@ -15,7 +15,7 @@ class _NavState extends State<Nav> {
   List<Widget> widgetOptions = <Widget>[
     //Home(), // un comment here to get the old home screen
     AllDocuments(),
-    Alerts(),
+    //Alerts(),
     Profile(),
     RevokedPage(),
   ];

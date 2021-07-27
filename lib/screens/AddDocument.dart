@@ -5,7 +5,7 @@ import 'package:my_cert/widgets/DocumentForm.dart';
 
 class AddDocument extends StatelessWidget {
   static final String id = 'addDocument';
-  AddDocument({Key key}) : super(key: key);
+  AddDocument({Key ?key}) : super(key: key);
   final MyFileManager _fileManager = MyFileManager();
 
 

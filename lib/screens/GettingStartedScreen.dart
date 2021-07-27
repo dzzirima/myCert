@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_cert/screens/OnBoardingScreen.dart';
 
 import 'LoginScreen.dart';
 
@@ -46,7 +47,7 @@ class _GettingStartedState extends State<GettingStarted> {
                 decoration: new BoxDecoration(
                   shape: BoxShape.circle,
                   border: new Border.all(
-                    color: Colors.indigo[900],
+                    color: Colors.indigo,
                     width: 4.0,
                   ),
                 ),
@@ -104,6 +105,6 @@ class _GettingStartedState extends State<GettingStarted> {
   }
 
   _login() async {
-    Navigator.pushReplacementNamed(context, LoginScreen.id);
+    Navigator.pushReplacementNamed(context, OnboardingScreen.id);
   }
 }

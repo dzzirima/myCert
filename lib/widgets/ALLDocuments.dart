@@ -11,7 +11,7 @@ import 'package:my_cert/utils/GetDocument.dart';
 
 
 class AllDocuments extends StatefulWidget {
-  AllDocuments({Key key}) : super(key: key);
+  AllDocuments({Key ?key}) : super(key: key);
 
 
   @override
@@ -19,10 +19,9 @@ class AllDocuments extends StatefulWidget {
 }
 
 class _AllDocumentsState extends State<AllDocuments> {
-  Future<String>futureListOfDocuments;
-  Future<List<AtKey>> futureListOfDocuments1;
+  late Future<String>futureListOfDocuments;
+  late Future<List<AtKey>> futureListOfDocuments1;
 
-  GetDocuments _getDocuments = GetDocuments();
   MyFileManager _fileManager = MyFileManager();
 
   @override
@@ -68,7 +67,7 @@ class _AllDocumentsState extends State<AllDocuments> {
 
                       var keys =  snapshot.data;
 
-                      keys.forEach((element) {
+                      keys!.forEach((element) {
                         print("....................");
                         print(element.key);
                         print(".......................");

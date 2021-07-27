@@ -14,21 +14,21 @@ import 'package:at_commons/at_commons.dart';
 
 class MyFileManager {
 
-  String fileBytesString;
-  String title;
-  int fileSize;
+  late String fileBytesString;
+  late String title;
+  late int fileSize;
 
   /// .............................working with @sign logic ................
-  ServerDemoService _serverDemoService = ServerDemoService.getInstance();
+  ClientService _serverDemoService = ClientService.getInstance();
   var uuid = Uuid();
 
 
   getFileFromDevice() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles();
+    FilePickerResult result = (await FilePicker.platform.pickFiles())!;
     //get the files from the picker
     if (result != null) {
 
-      File file = File(result.files.single.path);
+      File file = File(result.files.single.path!);
       Uint8List temp  = await file.readAsBytes();
       fileBytesString = jsonEncode(temp);
       title = result.files.first.name;
@@ -47,7 +47,7 @@ class MyFileManager {
   saveFileToKeyChain(Document _document) async {
     print('document sent over : $_document');
 
-    String atSign = await _serverDemoService.getAtSign(); // get the user who is currently logged in
+    String atSign = (await _serverDemoService.getAtSign())!; // get the user who is currently logged in
 
     AtKey document = AtKey();
     //await _serverDemoService.get(document);
@@ -78,7 +78,7 @@ class MyFileManager {
 
   getFileFromKeyChain(String key) async {
 
-    String atSign = await _serverDemoService.getAtSign();
+    String atSign = await _serverDemoService.getAtSign() as String;
     AtKey lookup = AtKey();
     lookup.sharedWith = atSign;
     lookup.key = key;
@@ -93,7 +93,7 @@ class MyFileManager {
 
   }
   Future <List<AtKey>> getKeysFromServer() async {
-   List<AtKey>  result = (await _serverDemoService.getAtKeys());
+   List<AtKey>  result = await _serverDemoService.getAtKeys();
    //print(result);
 
 

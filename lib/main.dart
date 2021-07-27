@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_cert/screens/AddDocument.dart';
 import 'package:my_cert/screens/GettingStartedScreen.dart';
 import 'package:my_cert/screens/LoginScreen.dart';
+import 'package:my_cert/screens/OnBoardingScreen.dart';
 import 'nav/Nav.dart';void main() {
   runApp(MyApp());
 }
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       home: GettingStarted(),
       routes: {
-        LoginScreen.id :(context) =>LoginScreen(),
+        OnboardingScreen.id :(context) =>OnboardingScreen(),
         Nav.id :(context) =>Nav(),
         GettingStarted.id :(context) =>GettingStarted(),
         AddDocument.id :(context) =>AddDocument()
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen({required Key key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void startTimer(){
     Timer(Duration(seconds: 7), (){
-      Navigator.pushReplacementNamed(context, LoginScreen.id);
+      Navigator.pushReplacementNamed(context, OnboardingScreen.id);
 
     });
   }

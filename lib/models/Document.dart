@@ -2,11 +2,11 @@
 import 'dart:typed_data';
 
 class Document {
-  String title;
-  String fileBytesString;
-  String description;
-  int fileSize;
-  List<Map<String,String>> sharedWith;
+  late String title;
+  late String fileBytesString;
+  late String description;
+  late int fileSize;
+  late List<Map<String,String>> sharedWith;
 
   @override
   String toString() => 'Title:$title,SharedWith:$sharedWith,size :$fileSize,description:$description ,fileBytesString$fileBytesString';

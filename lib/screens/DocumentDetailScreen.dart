@@ -12,7 +12,7 @@ class DocumentDetailScreen extends StatelessWidget {
   final Document document;
 
   // In the constructor, require a Todo.
-  DocumentDetailScreen({Key key, this.document}) : super(key: key);
+  DocumentDetailScreen({Key ?key, required this.document}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

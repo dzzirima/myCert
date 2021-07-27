@@ -7,7 +7,7 @@ import 'package:my_cert/models/Document.dart';
 import 'package:my_cert/widgets/ShareWith.dart';
 
 class DocumentForm extends StatefulWidget {
-  const DocumentForm({Key key,@required this.onSubmit}) : super(key: key);
+  const DocumentForm({Key ?key,required this.onSubmit}) : super(key: key);
 
   // submission of the frm data will be doen in the parent widget
   final ValueChanged<Document> onSubmit;

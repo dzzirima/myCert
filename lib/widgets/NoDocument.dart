@@ -3,7 +3,7 @@ import'package:flutter/material.dart';
 import 'package:my_cert/screens/AddDocument.dart';
 
 class NoDocument extends StatelessWidget {
-  const NoDocument({Key key}) : super(key: key);
+  const NoDocument({Key ?key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
