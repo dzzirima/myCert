@@ -64,9 +64,9 @@ class _AllDocumentsState extends State<AllDocuments> {
               delegate: SliverChildListDelegate([
                 FutureBuilder(
                     future:futureListOfDocuments1,
-                    builder: (BuildContext context, AsyncSnapshot<List<AtKey>> snapshot) {
+                    builder: (BuildContext context, AsyncSnapshot<List<AtKey>> snapshot)  {
 
-                      var keys = snapshot.data;
+                      var keys =  snapshot.data;
 
                       keys.forEach((element) {
                         print("....................");
@@ -86,7 +86,10 @@ class _AllDocumentsState extends State<AllDocuments> {
                         children:[
 
                           for(var index = 0 ;index < keys.length; index ++)
-                            DocumentCard(id:index,nameOfDocument: keys.elementAt(index).key.toString()),
+                            DocumentCard(id:keys.elementAt(index).key,
+                                nameOfDocument: keys.elementAt(index).key.toString(),
+
+                            ),
                         ],
                       );
                     }
